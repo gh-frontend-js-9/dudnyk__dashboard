@@ -1,0 +1,37 @@
+@import '../colors.scss';
+
+.side-bar {
+    background-color: $color1;
+    box-shadow: 0 3px 80px rgba(23, 24, 32, 0.2);
+    display: flex;
+    width: 12vh;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    width: 100%;
+    justify-content: space-between;
+    align-self: flex-start;
+    align-items: center;
+    
+    &__item {
+        font-size: 30px;
+        color: $color4;
+        // width: 100%;
+        margin: 5px;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: $color3;
+        }
+
+        &:active {
+            position: relative;
+            top: 1px;
+            right: 1px;
+        }
+    }
+}

@@ -1,0 +1,233 @@
+@import '../colors.scss';
+
+@mixin cellsLayout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    box-sizing: border-box;
+
+    &:nth-child(1) {
+        width: 15%;
+    }
+
+    &:nth-child(2) {
+        width: 10%;
+    }
+
+    &:nth-child(3) {
+        width: 13%;
+    }
+
+    &:nth-child(4) {
+        width: 10%;
+    }
+
+    &:nth-child(5) {
+        width: 22%;
+    }
+
+    &:nth-child(6) {
+        width: 10%;
+    }
+
+    &:nth-child(7) {
+        width: 17%;
+    }
+    
+    &:nth-child(8) {
+        width: 3%;
+    }
+}
+
+@mixin itemIndents {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    display: flex;
+    padding: 10px;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.project-page {
+    box-sizing: border-box;
+    background-color: $color7;
+    width: 100%;
+    padding: 5px 5px 5px 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    &__item {
+        background-color: $color6;
+        @include itemIndents();
+        box-sizing: border-box;
+
+        &_done {
+            border-left: 3px solid $color9;
+        }
+    
+        &_in-progress {
+            border-left: 3px solid $color3;
+        }
+
+        &_not-started {
+            border-left: 3px solid $color5;
+        }
+    }
+
+
+    &__header {
+        @include itemIndents();
+        max-height: 20%;
+    }
+
+    &__titles {
+        box-sizing: border-box;
+        color: $color4;
+        @include cellsLayout()
+    }
+
+
+    &__project-list {
+        max-height: 100%;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            background-color: $color6;
+            width: 5px;
+            margin-left: 2px;      
+        }
+        
+        &::-webkit-scrollbar-track {
+            margin: 2px 0;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: $color3; 
+            border-radius: 10px;
+        }
+    }
+    &__cell {
+        color: $color5;
+        position: relative;
+        @include cellsLayout;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__progress-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    &__progress-label {
+        width: 20%;
+        padding-right: 10px;
+    }
+
+    &__progress {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 60%;
+        height: 10px;
+
+        &::-webkit-progress-bar {
+            background-color: $color8;         
+        }
+
+        &::-webkit-progress-bar,
+        &::-webkit-progress-value {
+            border-radius: 5px;
+        }
+
+        &_done {
+            &::-webkit-progress-value {
+                background-color: $color9;
+            }
+        }
+
+        &_undone {
+            &::-webkit-progress-value {
+                background-color: $color3;
+            }
+        }
+    }
+
+    &__subtext {
+        color: $color4;
+        font-size: 0.9em;
+    }
+
+    &__text,
+    &__subtext {
+        display: flex;
+        align-items: center;
+    }
+
+    &__assign-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-avatar {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+
+
+    &__btn {
+        height: 40px;
+        width: 15px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.1s;
+    
+        &:hover  {
+            & .project-page__btn-dot,
+            & .project-page__btn-dot::after,
+            & .project-page__btn-dot::before {
+                background-color: $color3;
+            }
+        }
+    }
+
+    &__btn-dot {
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+        background: $color4;
+        display: flex;
+        align-items: center;
+        justify-content: center ;
+
+        &::after,
+        &::before {
+            content: '';
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            background: $color4;
+            position: absolute;
+        }
+
+        &::after {
+            transform: translateY(10px);
+        }
+
+        &::before {
+            transform: translateY(-10px);
+        }
+    }
+}
