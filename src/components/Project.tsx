@@ -52,14 +52,12 @@ class Project extends Component<ProjectData, IState>{
         let formatedDeadline:string = `${deadlineDate.getDay()} ${months[deadlineDate.getMonth()]} ${deadlineDate.getFullYear()}`;
         let daysleft:string = `${new Date(deadlineDate.getTime() - this.getDate(created_at).getTime()).getDay()} days left`;
         
-        let isComplited:boolean = status.toLocaleLowerCase() === 'completed' ? true : false;   
-    
         return (
             <div className={'project-page__item ' + 
-                (isComplited ? 'project-page__item_done'
-                            : status.toLocaleLowerCase() === 'queued' 
+                (progress === 100 ? 'project-page__item_done'
+                            : progress === 0
                                 ? 'project-page__item_not-started'
-                                : 'project-page__item_in-rogress')} >
+                                : 'project-page__item_in-progress')} >
             
                 <ProjectCell cellType='project-page__cell'>
                     <ProjectBox title = {title} text = {company} />
