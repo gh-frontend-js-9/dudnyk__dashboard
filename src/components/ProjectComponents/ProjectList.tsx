@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import requestAPI from '../requestAPI';
-import Project from '../components/Project';
+import requestAPI from '../../requestAPI';
+import Project from './Project';
 
 interface ProjectData {
     timeSpent?: number

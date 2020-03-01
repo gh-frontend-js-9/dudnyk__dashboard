@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 import '../assets/sideBar/sideBar.scss';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { NavLink } from 'react-router-dom'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SideBarLink from './SideBarLink';
 
 class SideBar extends Component {
     render() {
         return (
             <div className='side-bar'>
                 <nav className='navigation'>
-                    <FontAwesomeIcon icon='home' className='navigation__item'/>
-                    
-                    <FontAwesomeIcon icon='bars' className='navigation__item'/>
-                    
-                    <FontAwesomeIcon icon='chart-line' className='navigation__item'/>
-                    
-                    <FontAwesomeIcon icon='envelope' className='navigation__item'/>
-                    
-                    <FontAwesomeIcon icon='user-friends' className='navigation__item'/>                    
+
+                  <SideBarLink to="/home" icon="home"/>  
+                  
+                  <SideBarLink to="/projects" icon="bars"/>  
+                  
+                  <SideBarLink to="/chart" icon="chart-line"/>  
+                  
+                  <SideBarLink to="/messages" icon="envelope"/>  
+                  
+                  <SideBarLink to="/friends" icon="user-friends"/>  
+                  
                 </nav>
             </div>
         )

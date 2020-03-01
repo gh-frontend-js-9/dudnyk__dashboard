@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import ProjectCell from './ProjectCell';
 import ProjectBox from './ProjectBox';
-import Gravatar from './Gravatar';
+import Gravatar from '../Gravatar';
 
 
 interface ProjectData {
@@ -78,6 +78,7 @@ class Project extends Component<ProjectData, IState>{
                 <ProjectCell cellType='project-page__cell'>
                     <div className='project-page__progress-container'>
                         <label htmlFor ="progress" className='project-page__progress-label'>{`${progress}%`}</label>
+                        
                         <progress id='progress' value={progress} max="100" 
                             className={'project-page__progress ' + ( progress < 100 
                                 ? 'project-page__progress_undone' 

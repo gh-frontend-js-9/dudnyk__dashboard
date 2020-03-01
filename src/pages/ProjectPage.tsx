@@ -1,6 +1,6 @@
 import React, {Component} from'react';
-import ProjectTitles from '../components/ProjectTitles';
-import ProjectList from '../components/ProjectList';
+import ProjectTitles from '../components/ProjectComponents/ProjectTitles';
+import ProjectList from '../components/ProjectComponents/ProjectList';
 
 class ProjectPage extends Component {
     

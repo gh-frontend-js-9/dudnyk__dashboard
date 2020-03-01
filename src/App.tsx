@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import './assets/style.scss'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
 import Header from './components/Header';
 import SideBar from './components/SideBar';
 import ProjectPage from './pages/ProjectPage';
@@ -14,19 +20,45 @@ library.add(faSearch, faBell, faChevronDown, faHome, faBars, faChartLine, faEnve
 class App extends Component {
   render() {
     return (
+      <Router>
+        <div className='app'>
+          
+          <Switch>
+          
+            <Route path="/logIn"></Route>
 
-      <div className='app'>
-        <Header/>
+            <Route path="/signUp"></Route>
+
+            <Route path="/resetpassword"></Route>
+
+            <Route path="/">
+              <Header/>
+              
+              <div className='app__content'>
+                <SideBar/>  
+                
+                <Switch>
+                  <Route path="/home"> </Route>
+                  
+                  <Route path="/projects" component= {ProjectPage}/>
+
+                  <Route path="/chart"> </Route>
+
+                  <Route path="/messages"> </Route>
+
+                  <Route path="/friends"> </Route>
+
+                </Switch>
+              </div>
+
+            </Route>
+
+          </Switch>
         
-        <div className='app__content'>
-          <SideBar/>  
-          <ProjectPage />
         </div>
-        
-      </div>
+      </Router>
     )
   }
-
 }
 
 export default App;

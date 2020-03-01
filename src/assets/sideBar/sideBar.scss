@@ -33,5 +33,9 @@
             top: 1px;
             right: 1px;
         }
+
+        &_active {
+          color: $color5;  
+        }
     }
 }
