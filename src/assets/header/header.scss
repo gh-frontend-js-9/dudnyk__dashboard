@@ -3,6 +3,7 @@
 .header {
     width: 100vw;
     height: 10vh;
+    padding: 5px 0;
     box-shadow: 0 3px 80px rgba(23, 24, 32, 0.2);
     background-color: $color1;
     display: flex;
@@ -65,7 +66,7 @@
 
     &__search, 
     &__bell {
-        font-size: 30px;
+        font-size: 26px;
     }
     
     &__user{
