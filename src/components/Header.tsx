@@ -35,6 +35,7 @@ class Header extends Component<IProps, IState> {
     }
     
     handleExitClick = ():void => {
+        localStorage.token = '';
         this.props.signOut();
     }
 

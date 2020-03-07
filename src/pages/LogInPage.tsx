@@ -33,6 +33,21 @@ class LogInPage extends Component<IProps,IState> {
         isBtnDisabled: true
     }
 
+    async componentDidMount() {
+        console.log(localStorage.token);
+        try {
+            
+            let resp:any = await requestAPI.getCurrentUser();
+            if (resp.status === 200) {
+                this.props.signIn();
+                let data:LogIn  = resp.data;
+
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     handleChange = (e):void =>  {
         let { name, value } = e.target;
         switch (name) {
@@ -61,12 +76,17 @@ class LogInPage extends Component<IProps,IState> {
         event.preventDefault();
         
         try {
+            
             let resp:any = await requestAPI.logIn(email, password);
             if (resp.status === 200) {
+                let token:string = resp.headers['x-auth-token']; 
+                localStorage.token = token;
+
                 this.props.signIn();
                 let data:LogIn  = resp.data;
-                console.log(data)
-            } 
+
+            }
+
         } catch(error) {
             if (error.response) {
                 let errors:string = '';
