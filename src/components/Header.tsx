@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import '../assets/header/header.scss';
 
+import { connect } from 'react-redux';
+import { signOut } from '../redux/actions/actions'
 import Modal from './Modal';
 import AddProjectModal from './AddProjectModal';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from '../assets/images/Logo.png';
 import Gravatar from './Gravatar';
@@ -11,8 +14,8 @@ interface IState {
     showModal: boolean
 }
 
-interface IProps {
-
+interface IProps { 
+    signOut: () => void
 }
 
 class Header extends Component<IProps, IState> {
@@ -31,6 +34,10 @@ class Header extends Component<IProps, IState> {
         this.setState({showModal: childData})
     }
     
+    handleExitClick = ():void => {
+        this.props.signOut();
+    }
+
     render() {
         return (
             <div className='header'>
@@ -48,7 +55,7 @@ class Header extends Component<IProps, IState> {
                     <FontAwesomeIcon icon="search" className='header__bell'/>
                     <FontAwesomeIcon icon={['far', 'bell']} className='header__search'/>
 
-                    <div className="header__user">
+                    <div className="header__user" onClick={this.handleExitClick}>
                         <Gravatar email='' size={48} type='header__user-avatar'/>
                         <FontAwesomeIcon icon='chevron-down'/>
                     </div>
@@ -58,4 +65,6 @@ class Header extends Component<IProps, IState> {
     }
 }
 
-export default Header;
+
+
+export default connect(null, { signOut })(Header);

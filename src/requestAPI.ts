@@ -6,6 +6,47 @@ axios.defaults.headers.common['x-access-token'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6I
 const URL: string = 'https://geekhub-frontend-js-9.herokuapp.com';
 
 class RequestAPI {
+    static async logIn(email:string, password:string):Promise<any> {
+        let resp = await axios({
+            url: URL + "/api/users/login",
+            method: "POST",
+            data: {
+                email: email,
+                password: password
+            }
+        });
+        return resp;
+    }
+
+    static async signUp(email:string, password:string, name:string):Promise<any> {
+        let resp = await axios({
+            url: URL + '/api/users/',
+            method: 'POST',
+            data: {
+                email: email,
+                password: password,
+                name: name
+            }
+        }); 
+        return resp;
+    }
+
+    static async resetPassword(email:string, password:string, confPassword:string):Promise<any> {
+        let resp = await axios({
+            url: URL + '/api/users/reset_password',
+            method: 'POST',
+            headers: {
+                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTE5YzIyM2E0MTk5YzAwMjI3NTI2OGEiLCJpYXQiOjE1Nzk2ODc4OTl9.M5q83O_nP6B8SbfNKOs3CaQTu4JaQcbr_MgDLSgqnTU'
+            },
+            data: {
+                email: email,
+                password: password,
+                confirmationPassword: confPassword
+            }
+        });
+        return resp;
+    }
+
     static async getAllProjects():Promise<any> {
         try {
             let projects = await axios({
@@ -15,7 +56,7 @@ class RequestAPI {
             return projects.data
         } catch(error) {
             console.log(error);
-            return [];
+            return Promise.resolve([]);
         } 
     }
 

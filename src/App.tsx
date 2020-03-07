@@ -1,64 +1,55 @@
 import React, {Component} from 'react';
-import './assets/style.scss'
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {connect} from 'react-redux';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import LogInPage from './pages/LogInPage';
+import SignUpPage from './pages/SignUpPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
+import GeneralPage from './pages/GeneralPage';
 
-import Header from './components/Header';
-import SideBar from './components/SideBar';
-import ProjectPage from './pages/ProjectPage';
+import {signIn, signOut} from './redux/actions/actions';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 // import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { faSearch, faChevronDown, faHome, faBars, faChartLine, faEnvelope, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+
 library.add(faSearch, faBell, faChevronDown, faHome, faBars, faChartLine, faEnvelope, faUserFriends);
 
-class App extends Component {
+interface IProps {
+  isLogged: boolean;
+}
+
+class App extends Component<IProps> {
+  
   render() {
+
     return (
       <Router>
-        <div className='app'>
+
+        <Switch>
           
-          <Switch>
-          
-            <Route path="/logIn"></Route>
+          <Route path="/logIn" component= {LogInPage} />
+          <Route path="/signUp" component= {SignUpPage} />
+          <Route path="/resetPassword" component= {ResetPasswordPage} />
+          <Route path="/" component={GeneralPage} />
+          <Route path="*" component={() => '404 Not Found'}></Route>    
+        </Switch>
 
-            <Route path="/signUp"></Route>
-
-            <Route path="/resetpassword"></Route>
-
-            <Route path="/">
-              <Header/>
-              
-              <div className='app__content'>
-                <SideBar/>  
-                
-                <Switch>
-                  <Route path="/home"> </Route>
-                  
-                  <Route path="/projects" component= {ProjectPage}/>
-
-                  <Route path="/chart"> </Route>
-
-                  <Route path="/messages"> </Route>
-
-                  <Route path="/friends"> </Route>
-
-                </Switch>
-              </div>
-
-            </Route>
-
-          </Switch>
-        
-        </div>
+        { 
+          (this.props.isLogged) 
+          ? <Redirect to="/home" /> 
+          : <Redirect to='/logIn' />
+        }
+      
       </Router>
     )
   }
 }
 
-export default App;
+let mapStateToProps = (state:any) => {
+  return {
+    isLogged: state.isLogged
+  }
+}
+export default connect(mapStateToProps, { signIn, signOut })(App);
