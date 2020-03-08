@@ -39,7 +39,7 @@ class LogInPage extends Component<IProps,IState> {
         console.log(localStorage.token);
         try {
             
-            let resp:any = await requestAPI.getCurrentUser();
+            let resp:any = await requestAPI.getCurrentUser(localStorage.token);
             if (resp.status === 200) {
                 this.props.signIn();
                 let data:IUserInfo  = resp.data;
@@ -80,7 +80,7 @@ class LogInPage extends Component<IProps,IState> {
         
         try {
             
-            let resp:any = await requestAPI.logIn(email, password);
+            let resp:any = await requestAPI.logIn(email, password, localStorage.token);
             if (resp.status === 200) {
                 let token:string = resp.headers['x-auth-token']; 
                 localStorage.token = token;

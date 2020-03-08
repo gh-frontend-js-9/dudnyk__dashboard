@@ -80,7 +80,7 @@ class SignUpPage extends Component<IProps, IState> {
         event.preventDefault();
         
         try {
-            let resp:any = await requestAPI.signUp(this.state.email, this.state.password, this.state.name);
+            let resp:any = await requestAPI.signUp(this.state.email, this.state.password, this.state.name, localStorage.token);
             if (resp.status === 200) {
                 this.props.signIn();
                 let data:IUserInfo  = resp.data;

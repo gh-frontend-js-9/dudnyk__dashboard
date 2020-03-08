@@ -31,7 +31,7 @@ class ResetPasswordPage extends Component<IProps, IState> {
     async handleSubmit(event:React.MouseEvent<Element, MouseEvent>):Promise<void>  {
         event.preventDefault();
         try {
-            let resp = await requestAPI.resetPassword(this.state.email, this.state.password, this.state.confPassword);
+            let resp = await requestAPI.resetPassword(this.state.email, this.state.password, this.state.confPassword, localStorage.token);
             
             let data = resp.data;
             console.log(data);

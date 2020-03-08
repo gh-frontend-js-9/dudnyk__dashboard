@@ -28,7 +28,7 @@ class AddProjectModel extends Component<IProps, IState> {
 
     addProject = async (e:any):Promise<void> => {
         e.preventDefault();
-        let response:Object = await requestAPI.addProject(this.state);
+        let response:Object = await requestAPI.addProject(this.state, localStorage.token);
         if (Object.keys(response).length === 0) {
         }
         this.props.parentCallback(false);

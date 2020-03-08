@@ -48,7 +48,7 @@ class ProjectList extends Component<IProps, IState> {
     
     componentDidMount() {
         
-        requestAPI.getAllProjects()
+        requestAPI.getAllProjects(localStorage.token)
         .then((res) => {
             console.log(res)
             this.setState({ 

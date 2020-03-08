@@ -25,7 +25,7 @@ class MessagesPage extends Component<IProps, IState> {
 
     async componentDidMount() {
         try {
-            let resp:any = await requestAPI.getAllThreads();
+            let resp:any = await requestAPI.getAllThreads(localStorage.token);
             
             console.log(resp)
             
