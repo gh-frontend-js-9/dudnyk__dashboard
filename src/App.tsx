@@ -38,7 +38,7 @@ class App extends Component<IProps> {
 
         { 
           (this.props.isLogged) 
-          ? <Redirect to="/home" /> 
+          ? <Redirect to="/messages" /> 
           : <Redirect to='/logIn' />
         }
       

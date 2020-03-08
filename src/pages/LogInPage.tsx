@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import requestAPI from '../requestAPI';
 
 import { connect } from 'react-redux';
-import { signIn } from '../redux/actions/actions';
+import { signIn, assignUser } from '../redux/actions/actions';
 
-import LogIn from '../interfaces/logIn';
+
+import IUserInfo from '../interfaces/IUserInfo';
 
 import { validateEmail, validatePassword } from '../functions/validation';
 interface IState {
@@ -20,7 +21,8 @@ interface IState {
 } 
 
 interface IProps {
-    signIn: () => void
+    signIn: () => void,
+    assignUser: (data:Object) => void
 }
 
 class LogInPage extends Component<IProps,IState> {
@@ -40,7 +42,8 @@ class LogInPage extends Component<IProps,IState> {
             let resp:any = await requestAPI.getCurrentUser();
             if (resp.status === 200) {
                 this.props.signIn();
-                let data:LogIn  = resp.data;
+                let data:IUserInfo  = resp.data;
+                this.props.assignUser(data);
 
             }
         } catch(error) {
@@ -83,7 +86,8 @@ class LogInPage extends Component<IProps,IState> {
                 localStorage.token = token;
 
                 this.props.signIn();
-                let data:LogIn  = resp.data;
+                let data:IUserInfo  = resp.data;
+                this.props.assignUser(data);
 
             }
 
@@ -157,4 +161,4 @@ class LogInPage extends Component<IProps,IState> {
     }
 }
 
-export default connect(null, { signIn })(LogInPage);
+export default connect(null, { signIn, assignUser })(LogInPage);

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { url } from 'inspector';
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-access-token'] = localStorage.token;
@@ -45,13 +44,18 @@ class RequestAPI {
         return resp;
     }
 
+    static async getAllThreads():Promise<any> {
+        let resp = await axios({
+            url: URL + '/api/threads',
+            method: 'GET'
+        });
+        return resp;
+    }
+
     static async getCurrentUser():Promise<any> {
         let resp = await axios({
             url: URL + '/api/users/',
             method: 'GET',
-            headers: {
-                // 'x-access-token': localStorage.token
-            }
         });
         return resp;
 

@@ -1,0 +1,38 @@
+@import '../colors.scss';
+
+@mixin scroll {
+    &::-webkit-scrollbar {
+        background-color: $color6;
+        width: 5px;
+        margin-left: 2px;      
+    }
+    
+    &::-webkit-scrollbar-track {
+        margin: 2px 0;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: $color3; 
+        border-radius: 10px;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.messages {
+    display: flex;
+    flex-basis: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+@import './threads';
+@import './chat';
+@import './about';

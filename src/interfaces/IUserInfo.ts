@@ -1,4 +1,4 @@
-export default interface LogIn {
+export default interface UserInfo {
     position: string,
     description: string,
     phone: string,

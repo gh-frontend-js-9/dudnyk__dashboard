@@ -3,8 +3,9 @@ import React from 'react';
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import ProjectPage from '../pages/ProjectPage';
+import MessagesPage from './MessagesPage';
 
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 function GeneralPage() {
     return (
@@ -15,15 +16,21 @@ function GeneralPage() {
                 <SideBar/>  
                 
                 <Switch>
-                  <Route path="/home"> </Route>
+                  <Route path="/home">      
+                    <p style={{textAlign:'center' , width:'100%'}}>Will be addded soon or not</p>
+                  </Route>
                   
                   <Route path="/projects" component= {ProjectPage}/>
 
-                  <Route path="/chart"> </Route>
+                  <Route path="/chart" >
+                    <p style={{textAlign:'center' , width:'100%'}}>Will be addded soon or not</p>
+                  </Route>
 
-                  <Route path="/messages"> </Route>
+                  <Route path="/messages" component={MessagesPage} />
 
-                  <Route path="/friends"> </Route>
+                  <Route path="/friends">  
+                    <p style={{textAlign:'center' , width:'100%'}}>Will be addded soon or not</p>
+                  </Route> 
 
                 </Switch>
               </div>

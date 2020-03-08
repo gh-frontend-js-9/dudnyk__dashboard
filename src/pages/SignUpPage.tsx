@@ -4,12 +4,12 @@ import '../assets/auth/auth.scss';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { signIn } from '../redux/actions/actions';
+import { signIn, assignUser } from '../redux/actions/actions';
 import requestAPI from '../requestAPI';
 
 import {validateEmail, validateLength, validatePassword} from '../functions/validation';
 
-import LogIn from '../interfaces/logIn';
+import IUserInfo from '../interfaces/IUserInfo';
 
 interface IState {
     email: string,
@@ -23,7 +23,8 @@ interface IState {
 } 
 
 interface IProps {
-    signIn: () => void
+    signIn: () => void,
+    assignUser: (data:IUserInfo) => void
 }
 
 class SignUpPage extends Component<IProps, IState> {
@@ -82,8 +83,8 @@ class SignUpPage extends Component<IProps, IState> {
             let resp:any = await requestAPI.signUp(this.state.email, this.state.password, this.state.name);
             if (resp.status === 200) {
                 this.props.signIn();
-                let data:LogIn  = resp.data;
-                console.log(data)
+                let data:IUserInfo  = resp.data;
+                this.props.assignUser(data);
             } 
         } catch(error) {
             if (error.response) {
@@ -165,4 +166,4 @@ class SignUpPage extends Component<IProps, IState> {
 }
 
 
-export default connect(null, {signIn})(SignUpPage);
+export default connect(null, {signIn, assignUser})(SignUpPage);
