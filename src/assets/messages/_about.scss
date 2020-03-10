@@ -1,6 +1,8 @@
 @import '../colors.scss';
 
-.about {    
+.about {  
+    display: flex;
+    flex-direction: column;  
     flex-basis: 25%;
     height: 100%;
     overflow-y: auto;

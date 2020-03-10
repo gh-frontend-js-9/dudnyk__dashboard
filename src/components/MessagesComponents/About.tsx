@@ -50,7 +50,7 @@ const About = (props:IProps):ReactElement => {
                     </div>
 
                 </div>
-                ) : <Loading size={2}/>
+                ) : <Loading size={3}/>
 
             }
         </section>
