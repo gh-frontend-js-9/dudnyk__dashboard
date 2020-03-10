@@ -132,7 +132,7 @@ class LogInPage extends Component<IProps,IState> {
                             className={"auth__input " + (isPasswordError ? 'auth__input_error' : '')} 
                             onChange={this.handleChange}/>
                         { isPasswordError 
-                        ? <p style={{color:'red', fontSize: '0.8em'}}>Password must contain more than 5 letters</p> 
+                        ? <p style={{color:'red', fontSize: '0.8em'}}>Password must contain more than 7 letters</p> 
                         : ''}
                     </div>
 

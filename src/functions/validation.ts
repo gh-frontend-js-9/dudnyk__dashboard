@@ -4,7 +4,7 @@ export let validateEmail = (email:string):boolean =>  {
     return  !( (re.test(String(email).toLowerCase())) && validateLength(email, 6) );
 }
 export let validatePassword = (password:string):boolean => {
-    return !validateLength(password, 5)
+    return !validateLength(password, 7)
 }
 
 export let validateLength = (str:string, num:number):boolean  => {

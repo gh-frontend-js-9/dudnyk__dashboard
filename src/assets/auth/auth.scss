@@ -71,7 +71,6 @@
             outline: none;
             border: none;
             box-shadow: 0 0 2px 2px $color3;
-            
         }
     }
 
@@ -88,8 +87,22 @@
         color: $color5;
         align-self: center;
         
+        &:hover {
+            background-color: rgba($color: $color3, $alpha: .7);
+        }
+
+        &:active {
+            background-color: rgba($color: $color3, $alpha: .3);
+        }
+
         &_disabled {
             background-color: $color8;
+            
+            &:hover{
+                background-color: $color8;    
+            }
         }
+
+
     }
 }

@@ -81,11 +81,9 @@ class SignUpPage extends Component<IProps, IState> {
         
         try {
             let resp:any = await requestAPI.signUp(this.state.email, this.state.password, this.state.name, localStorage.token);
-            if (resp.status === 200) {
                 this.props.signIn();
                 let data:IUserInfo  = resp.data;
                 this.props.assignUser(data);
-            } 
         } catch(error) {
             if (error.response) {
                 let errors:string = '';
@@ -131,7 +129,7 @@ class SignUpPage extends Component<IProps, IState> {
                             className={"auth__input " + (isPasswordError ? 'auth__input_error' : '')} 
                             onChange={this.handleChange}/>
                         { isPasswordError 
-                        ? <p style={{color:'red', fontSize: '0.8em'}}>Password must contain more than 5 letters</p> 
+                        ? <p style={{color:'red', fontSize: '0.8em'}}>Password must contain more than 7 letters</p> 
                         : ''}
                     </div>
 
@@ -149,7 +147,7 @@ class SignUpPage extends Component<IProps, IState> {
                         <button className={"auth__btn " + ((isBtnDisabled) ? 'auth__btn_disabled' : '')} 
                             // disabled = {isBtnDisabled}
                             onClick= {(e) => this.handleSubmit(e)}>
-                            Log in
+                            Sign up
                         </button>
                         { submitError 
                         ? <p style={{color:'red', fontSize: '0.8em', textAlign:'center'}}>{submitError}</p> 
