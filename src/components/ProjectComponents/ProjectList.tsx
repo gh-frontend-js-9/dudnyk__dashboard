@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import requestAPI from '../../requestAPI';
 import Project from './Project';
+import Loading from '../Loading';
 
 interface ProjectData {
     timeSpent?: number
@@ -46,26 +47,37 @@ class ProjectList extends Component<IProps, IState> {
     }
     
     
-    componentDidMount() {
+    async componentDidMount() {
         
-        requestAPI.getAllProjects(localStorage.token)
-        .then((res) => {
-            console.log(res)
-            this.setState({ 
-                projects: res,
+        try { 
+            this.setState({
+                ...this.state,
+                isLoading: true
+            })
+
+            let resp = await requestAPI.getAllProjects(localStorage.token);
+            this.setState({
+                ...this.state, 
+                projects: resp.data,
                 isLoading: false
-            }) 
-        })
+            })
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     render() {
         return (
             <div className='project-page__project-list'>
                
-               {   
+               {!this.state.isLoading 
+                ?       
                     this.state.projects.map(el => {
                         return <Project {...el} key={el._id}/>
                     })
+
+                :   <Loading size={3} />
+                
                 }
 
             </div>

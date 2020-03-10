@@ -21,6 +21,12 @@
         height: 85%;
     }
 
+    &__empty-thread {
+        color: $color4;
+        font-size: 20px;
+        margin: auto;
+    }
+
     &__btn-container  {
         border-top: 2px solid #9ca1b2;
         box-sizing: border-box;

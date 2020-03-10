@@ -7,6 +7,8 @@
     flex-direction: column;
 
     &__container {
+        display: flex;
+        flex-direction: column;
         padding: 0 10px;
         height: 85%;
         overflow-y: auto;
@@ -14,7 +16,13 @@
         @include scroll;
     
     }
-
+    
+    &__empty-message {
+       color: $color4;
+       font-weight: 600;
+       font-size: 20px;
+       margin: auto; 
+    }
 
     &__send-block {
         height: 15%;

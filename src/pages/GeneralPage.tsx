@@ -16,21 +16,15 @@ function GeneralPage() {
                 <SideBar/>  
                 
                 <Switch>
-                  <Route path="/home">      
-                    <p style={{textAlign:'center' , width:'100%'}}>Will be addded soon or not</p>
-                  </Route>
+                  <Route path="/home" component={EmptyPage}/>
                   
                   <Route path="/projects" component= {ProjectPage}/>
 
-                  <Route path="/chart" >
-                    <p style={{textAlign:'center' , width:'100%'}}>Will be addded soon or not</p>
-                  </Route>
+                  <Route path="/chart" component={EmptyPage}/>
 
                   <Route path="/messages" component={MessagesPage} />
 
-                  <Route path="/friends">  
-                    <p style={{textAlign:'center' , width:'100%'}}>Will be addded soon or not</p>
-                  </Route> 
+                  <Route path="/friends" component={EmptyPage}/>  
 
                 </Switch>
               </div>
@@ -40,3 +34,15 @@ function GeneralPage() {
 }
 
 export default GeneralPage;
+
+
+//temporary page
+function EmptyPage() {
+  return (
+    <div style={{height: '100%', width:'100%',  backgroundColor: '#2b2d3c', display:'flex'}}>
+      <p style={{margin:'auto', color:'#9ca1b2', fontSize: '30px'}}>
+        Will be addded soon or not)
+      </p>
+    </div>
+  )
+}

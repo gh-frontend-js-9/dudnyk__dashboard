@@ -12,9 +12,9 @@ import {signIn, signOut} from './redux/actions/actions';
 import { library } from '@fortawesome/fontawesome-svg-core';
 // import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons'
-import { faSearch, faChevronDown, faHome, faBars, faChartLine, faEnvelope, faUserFriends, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faChevronDown, faHome, faBars, faChartLine, faEnvelope, faUserFriends, faPaperclip, faSync } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faSearch, faBell, faChevronDown, faHome, faBars, faChartLine, faEnvelope, faUserFriends, faPaperclip);
+library.add(faSearch, faBell, faChevronDown, faHome, faBars, faChartLine, faEnvelope, faUserFriends, faPaperclip, faSync);
 
 interface IProps {
   isLogged: boolean;

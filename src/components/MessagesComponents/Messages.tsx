@@ -8,6 +8,8 @@ import { ICurrentThread } from '../../interfaces/IThreads'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Message from './Message';
+import Loading from '../Loading';
+import { isNullOrUndefined } from 'util';
 
 interface IProps {
     currentThread: ICurrentThread,
@@ -16,7 +18,8 @@ interface IProps {
 }
 
 interface IState {
-    messages: IMessage[]
+    messages: IMessage[],
+    isLoading: boolean
 }
 
 
@@ -24,17 +27,26 @@ class Messages extends Component<IProps, IState> {
     chatContainer = React.createRef<HTMLDivElement>();
     
     state:IState = {
-        messages: []
+        messages: [],
+        isLoading: false
     }    
 
     async componentDidMount() {
         if(!!this.props.currentThread.id) {
             try {
-                let resp:any = await requestAPI.getThreadMessages(this.props.currentThread.id, localStorage.token);
                 this.setState({
                     ...this.state,
-                    messages: resp.data
+                    isLoading: true
                 });
+
+                let resp:any = await requestAPI.getThreadMessages(this.props.currentThread.id, localStorage.token)
+        
+                this.setState({
+                    ...this.state,
+                        messages: resp.data,
+                        isLoading: false
+                })
+                
             } catch (error) {
                 console.log(error);
             }
@@ -47,11 +59,20 @@ class Messages extends Component<IProps, IState> {
     async componentWillReceiveProps(nextProps) {
         if(!!nextProps.currentThread.id) {
             try {
-                let resp:any = await requestAPI.getThreadMessages(nextProps.currentThread.id, localStorage.token);
                 this.setState({
                     ...this.state,
-                    messages: resp.data
+                    isLoading: true
                 });
+
+                let resp:any = await requestAPI.getThreadMessages(nextProps.currentThread.id, localStorage.token);
+                
+                this.setState({
+                    ...this.state,
+                    messages: resp.data,
+                    isLoading: false
+                });
+
+
             } catch (error) {
                 console.log(error);
             }
@@ -113,16 +134,25 @@ class Messages extends Component<IProps, IState> {
     }
 
     render() {
-        return (
+        return (    
             <section className='chat'>
+            
+                    
                 <div className='chat__container' ref={this.chatContainer}>
-                    {
-                        this.state.messages.map(el => {
-                            return <Message message={el} key={el._id} />
-                        })
-                    }
+                    {!this.state.isLoading ? (    
+                        
+                        this.state.messages.length 
+                        ?
+                            this.state.messages.map(el => {
+                                return <Message message={el} key={el._id} />
+                            })
+                        : <p className='chat__empty-message'>No messages yet)</p>
+                    
+                    ) : <Loading size={3} /> }
                 </div>
                 
+                
+            
                 <div className='chat__send-block'>
                     <textarea name="message" className='chat__textarea' 
                         placeholder='Write a message' 
@@ -130,7 +160,7 @@ class Messages extends Component<IProps, IState> {
                         {/* <FontAwesomeIcon icon='paperclip'/>         */}
                     </textarea>
                 </div>
-            </section>
+            </section> 
         )
     }
 }

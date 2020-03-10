@@ -25,6 +25,7 @@ class Threads extends Component<IProps, IState> {
 
     async componentDidMount() {
         try {
+
             let resp:any = await requestAPI.getAllThreads(localStorage.token);
             this.props.updateAllThreads(resp.data);
 
@@ -41,7 +42,7 @@ class Threads extends Component<IProps, IState> {
                     this.props.threads.length ?
                     this.props.threads.map(thread => {
                         return <Thread thread = {thread}  key={thread._id} allUsers={this.props.allUsers}/>
-                    }) : 'No messages threads yet)'
+                    }) : <p className='thread-block__empty-thread'>No messages threads yet)</p>
                 }
                 </div>
 

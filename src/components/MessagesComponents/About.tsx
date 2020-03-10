@@ -6,6 +6,8 @@ import { ICurrentThread } from '../../interfaces/IThreads'
 
 import Gravatar from '../Gravatar';
 
+import Loading from '../Loading';
+
 interface IProps {
     allUsers: IUserInfo[],
     currentThread: ICurrentThread
@@ -14,7 +16,7 @@ interface IProps {
 
 const About = (props:IProps):ReactElement => {
     let interlocutor:IUserInfo = props.allUsers.find((el) => el._id === props.currentThread.interlocutor);
-    console.log(interlocutor)
+
     return (
         <section className='about about_theme_dark'>
             {  props.allUsers.length ? (
@@ -46,8 +48,9 @@ const About = (props:IProps):ReactElement => {
                         <span className='about__title'>Organization</span>
                         <span className='about__value'>{interlocutor.organization}</span>
                     </div>
+
                 </div>
-                ) : ( 'loading...' )
+                ) : <Loading size={2}/>
 
             }
         </section>

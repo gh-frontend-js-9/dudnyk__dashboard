@@ -134,19 +134,14 @@ class RequestAPI {
     }
 
     static async getAllProjects(token:string):Promise<any> {
-        try {
-            let projects = await axios({
-                method: 'GET',
-                url: URL+'/api/projects/',
-                headers: {
-                    'x-access-token': token
-                }
-            });
-            return projects.data
-        } catch(error) {
-            console.log(error);
-            return Promise.resolve([]);
-        } 
+        let resp = await axios({
+            method: 'GET',
+            url: URL+'/api/projects/',
+            headers: {
+                'x-access-token': token
+            }
+        });
+        return resp;
     }
 
     static async addProject(data:object, token:string):Promise<any> {
