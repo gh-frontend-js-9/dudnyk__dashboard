@@ -95,12 +95,17 @@ class Messages extends Component<IProps, IState> {
 
             try {
                 let textareaValue:string = event.currentTarget.value;
+                
+                if (!textareaValue) {
+                    throw new Error('textarea is empty');
+                }
+
                 event.currentTarget.value = '';
             
                 let resp = await requestAPI.sendMessage(id, textareaValue, localStorage.token);
                 let message:IMessage = this.createMessage(resp.data, this.props.userName);
                 this.addMessage(message);
-                
+
             } catch(error) {
                 console.log(error);
             }
