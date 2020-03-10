@@ -93,15 +93,10 @@ class LogInPage extends Component<IProps,IState> {
 
         } catch(error) {
             if (error.response) {
-                let errors:string = '';
                 
-                for (let key in error.response.data.errors) {
-                    errors +=  error.response.data.errors[key] + '. ';
-                }
-
                 this.setState({
                     ...this.state,
-                    submitError: errors
+                    submitError: error.response.data.message 
                 });    
 
             } else {
