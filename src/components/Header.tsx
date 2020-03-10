@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../assets/header/header.scss';
 
 import { connect } from 'react-redux';
-import { signOut } from '../redux/actions/actions'
+import { signOut, updateAllThreads } from '../redux/actions/actions'
 import Modal from './Modal';
 import AddProjectModal from './AddProjectModal';
 
@@ -11,6 +11,7 @@ import Logo from '../assets/images/Logo.png';
 import Gravatar from './Gravatar';
 
 import IUserInfo from "../interfaces/IUserInfo";
+import {IThread} from '../interfaces/IThreads'
 
 interface IState {
     showModal: boolean
@@ -18,7 +19,8 @@ interface IState {
 
 interface IProps { 
     me: IUserInfo,
-    signOut: () => void
+    signOut: () => void,
+    updateAllThreads: (data:IThread[]) => void
 }
 
 class Header extends Component<IProps, IState> {
@@ -40,6 +42,7 @@ class Header extends Component<IProps, IState> {
     handleExitClick = ():void => {
         localStorage.token = '';
         this.props.signOut();
+        this.props.updateAllThreads([]);
     }
 
     render() {
@@ -76,4 +79,4 @@ let mapStateToProps = (state:any):any => {
     }
 }
 
-export default connect(mapStateToProps, { signOut })(Header);
+export default connect(mapStateToProps, { signOut, updateAllThreads })(Header);

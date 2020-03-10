@@ -42,7 +42,7 @@ class Threads extends Component<IProps, IState> {
                     this.props.threads.length ?
                     this.props.threads.map(thread => {
                         return <Thread thread = {thread}  key={thread._id} allUsers={this.props.allUsers}/>
-                    }) : <p className='thread-block__empty-thread'>No messages threads yet)</p>
+                    }) : <p className='threads-block__empty-thread'>No threads yet)</p>
                 }
                 </div>
 
