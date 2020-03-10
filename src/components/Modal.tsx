@@ -3,7 +3,7 @@ import '../assets/modal.scss'
 
 interface IProps {
     title: string;
-    parentCallback: (arg0: boolean) => void;
+    parentCallback: (isModal: boolean) => void;
 }
 
 class Modal extends Component<IProps> {

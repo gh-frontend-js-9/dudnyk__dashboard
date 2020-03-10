@@ -6,7 +6,6 @@ axios.defaults.headers.common['Content-Type'] = 'application/json';
 const URL: string = 'https://geekhub-frontend-js-9.herokuapp.com';
 
 class RequestAPI {
-    static token:string = '';
 
     static async logIn(email:string, password:string, token:string):Promise<any> {
         let resp = await axios({
@@ -75,7 +74,63 @@ class RequestAPI {
             }
         });
         return resp;
+    }
 
+    static async getThreadMessages(id:string, token:string):Promise<any> {
+        let resp = await axios({
+            url: URL +'/api/threads/messages/'+ id,
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        return resp;
+    }
+
+    static async createThread(id:string, token:string):Promise<any> {
+        let resp = await axios({
+            url: URL +'/api/threads',
+            method: 'POST',
+            headers: {
+                'x-access-token': token
+            },
+            data: {
+                user: {
+                    _id: id
+                }
+            }
+        })
+        return resp
+    }
+
+    static async sendMessage(id:string, body:string, token:string) {
+        let resp = await axios({
+            url: URL + '/api/threads/messages',
+            method: 'POST',
+            headers: {
+                'x-access-token': token
+            },
+            data: {
+                thread: {
+                    _id: id
+                },
+                message: {
+                    body: body
+                }
+            }
+        })
+        return resp;
+    }
+
+    static async getAllUsers(token:string):Promise<any> {
+        let resp = await axios({
+            url: URL+ '/api/users/all',
+            method: 'GET',
+            headers: {
+                'x-access-token': token 
+            }
+        });
+        return resp;
     }
 
     static async getAllProjects(token:string):Promise<any> {

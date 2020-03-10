@@ -1,0 +1,78 @@
+@import '../colors.scss';
+
+.thread-modal {
+    height: 80vh;
+    background-color: $color6;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+    align-items: center;
+    
+
+    &__container {
+        height: 90%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
+        @include scroll;
+        justify-content: space-around;
+
+    }
+
+    &__user-block {
+        @include flex-center;
+        flex: 1;
+        flex-basis: auto;
+        flex-direction: column;
+        word-break: break-word;
+        width: 90px;
+        max-width: 110px;
+        min-height: 120px;
+        margin: 5px;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($color: $color4, $alpha: .4);
+        }
+
+        &_active {
+            background-color: rgba($color: $color4, $alpha: .6);
+        }
+    }
+
+    &__avatar {
+        border-radius: 50%;
+        margin: 5px;
+    }
+
+    &__user-name {
+        text-align: center;
+        color: $color5;
+        font-weight: 600;
+    }
+
+
+    &__btn {
+        margin: auto;
+        border: none;
+        background-color: $color3;
+        border-radius: 5px;
+        min-width: 100px;
+        padding: 5px;
+        color: $color5;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($color: $color3, $alpha: .7);
+        }
+
+        &:active {
+            background-color: rgba($color: $color3, $alpha: .3);
+        }
+    }
+
+}

@@ -3,7 +3,7 @@ export interface IThread {
     _id: string,
     created_at: string,
     updated_at: string,
-    message: ILastMessage
+    message?: ILastMessage
 
 }
 
@@ -17,3 +17,9 @@ export interface ILastMessage {
     thread: string,
     body: string
 }
+
+export interface ICurrentThread {
+    id: string,
+    interlocutor: string
+}
+

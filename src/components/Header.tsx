@@ -10,11 +10,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from '../assets/images/Logo.png';
 import Gravatar from './Gravatar';
 
+import IUserInfo from "../interfaces/IUserInfo";
+
 interface IState {
     showModal: boolean
 }
 
 interface IProps { 
+    me: IUserInfo,
     signOut: () => void
 }
 
@@ -57,7 +60,7 @@ class Header extends Component<IProps, IState> {
                     <FontAwesomeIcon icon={['far', 'bell']} className='header__search'/>
 
                     <div className="header__user" onClick={this.handleExitClick}>
-                        <Gravatar email='' size={48} type='header__user-avatar'/>
+                        <Gravatar email={this.props.me.email} size={48} type='header__user-avatar'/>
                         <FontAwesomeIcon icon='chevron-down'/>
                     </div>
                 </div>
@@ -67,5 +70,10 @@ class Header extends Component<IProps, IState> {
 }
 
 
+let mapStateToProps = (state:any):any => {
+    return {
+        me: state.user
+    }
+}
 
-export default connect(null, { signOut })(Header);
+export default connect(mapStateToProps, { signOut })(Header);

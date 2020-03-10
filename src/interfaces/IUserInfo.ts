@@ -1,4 +1,4 @@
-export default interface UserInfo {
+export default interface IUserInfo {
     position: string,
     description: string,
     phone: string,

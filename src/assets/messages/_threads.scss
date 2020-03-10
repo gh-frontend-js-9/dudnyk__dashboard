@@ -2,11 +2,18 @@
 
 
 .threads-block {
-    flex-basis: 30%;
     background-color: $color2;
     box-shadow: 0 3px 80px rgba(23, 24, 32, 0.3);
     box-sizing: border-box;
     
+    &_full-width {
+        flex-basis: 100%;
+    }
+
+    &_normal-width {
+        flex-basis: 30%;
+    }
+
     &__container {
         overflow-x: hidden;
         overflow-y: auto;
@@ -26,6 +33,7 @@
         border-radius: 3px;
         cursor: pointer;
         width: 80%;
+        max-width: 250px;
         min-height: 30%;
         @include flex-center();
         padding: 5px;
@@ -42,7 +50,7 @@
             background-color: rgba($color: $color3, $alpha: .3);
         
         }
-        
+
         &::before {
             content: '+';
             margin-right: 5px;
@@ -65,11 +73,11 @@
     }
 
     &:hover {
-        background-color: $color6;
+        background-color: rgba($color: $color6, $alpha: .5) ;
     }
 
     &_active {
-        background-color: $color6;
+        background-color: rgba($color: $color6, $alpha: .9);
     }
 
     &__header {

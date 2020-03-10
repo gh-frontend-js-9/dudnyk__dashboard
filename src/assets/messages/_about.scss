@@ -1,0 +1,73 @@
+@import '../colors.scss';
+
+.about {    
+    flex-basis: 25%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include scroll;
+
+    &_theme_dark{
+        background-color: $color2;
+    }
+
+    &__wrapper {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 16px;
+        word-break: break-word;
+        text-align: center;
+    }
+
+    &__main-block {
+        @include flex-center;
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+    &__avatar {
+        border-radius: 50%;
+        padding-bottom: 10px;
+    }
+
+    &__name {
+        font-size: 1.1em;
+    }
+
+    &__position {
+        padding-bottom: 10px;
+    }
+
+    // &__description {
+
+    // }
+
+    &__block {
+        @include flex-center;
+        flex-direction: column;
+        padding-bottom: 10px;
+    }
+
+    &__title {
+        padding-bottom: 3px;
+    }
+
+
+    &__name,
+    &__value {
+        color: $color5
+    }
+
+    &__title,
+    &__position, 
+    &__description {
+        color: $color4
+    }
+
+    &__title,
+    &__description {
+        font-size: 0.9em;
+    }
+}

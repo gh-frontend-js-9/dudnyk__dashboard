@@ -1,0 +1,102 @@
+@import '../colors.scss';
+
+.chat {
+    background-color: $color1;
+    flex-basis: 45%;
+    display: flex;
+    flex-direction: column;
+
+    &__container {
+        padding: 0 10px;
+        height: 85%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        @include scroll;
+    
+    }
+
+
+    &__send-block {
+        height: 15%;
+        @include flex-center();
+        position: relative;
+    }
+
+    &__textarea {
+        resize: none;
+        border-radius: 15px;
+        padding: 10px;
+        padding-right: 15px;
+        border: 1px solid rgba(156, 161, 178, 0.3);
+        background-color: $color6;
+        width: 80%;
+        height: 30%;
+        overflow-y: hidden;
+        color: $color5;
+
+        
+        &::placeholder {
+            font-size: 1.2em;
+        }
+        &:focus {
+            outline: none;
+            border: 2px solid $color3;
+        }
+    }
+
+    &__attachment {
+        position: absolute;
+        right: 10%;
+        transform: translateX(50%);
+        width: 30px;
+        height: 30px;
+        background: url('/images/message_input/attach.png') no-repeat;
+        background-position: center;
+        cursor: pointer;
+    }
+}
+
+
+.message {
+    display: grid;
+    grid-template: 
+    "avatar body" 
+    ". date" / 46px minmax(auto, 60%);
+    row-gap: 5px;
+    margin: 15px 0;
+    
+    &_to-someone {
+        justify-content: end;
+        grid-template: 
+        "body avatar"
+        "date ."/ auto 46px;
+    }
+
+    &__avatar {
+        grid-area: avatar;
+        border-radius: 50%;
+        height: 46px;
+    }
+
+    &__body {
+        grid-area: body;
+        padding: 8px;
+        align-self: end;
+        background-color: $color6;
+        border-radius: 3px;
+        color: $color5;
+        word-break: break-word;
+    }
+
+    &__date {
+        grid-area: date;
+        grid-column-start: 2;
+        font-size: 0.8em;
+        color: $color4;
+        
+        &_to-someone {
+            grid-column-start: 1;
+            justify-self: end;
+        }
+    }
+}
